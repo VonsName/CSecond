@@ -2,6 +2,8 @@
 #include <stdio.h>
 
 
+
+
 //
 print_arr2(int a[],int n)
 {
@@ -31,7 +33,7 @@ void print_arr(int a[])
 }
 
 //数组名做函数参数
-int main()
+int main9()
 {
 	int a[] = { 1,2,3,4,5 };
 	//print_arr(a);
