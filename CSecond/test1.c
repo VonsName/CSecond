@@ -2,9 +2,75 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <Windows.h>
+
+
+
+void foo()
+{
+	extern int x; //extern声明不分配内存空间
+	printf("%d", x);// 如果在定义全局变量前使用,必须要先声明 
+}
+
+//普通的全局变量
+//不显示初始化的时候默认初始化为0
+//整个程序运行完毕才会释放
+int x = 10;
+
+
+int main12()
+{
+	foo();
+	return 0;
+}
+
+void fun01()
+{
+	//静态变量如果没有初始化默认为0,普通的变量没有初始化的时候,默认为随机数
+	//静态变量初始化只会执行一次
+	//static 在编译期间就已经分配了内存,而普通的局部变量只有当执行到了定义的地方才会分配内存
+	static int i = 0;
+	int a = 10;
+	//static int  j = a; error //static只能用常量初始化
+}
+int main11()
+{
+	int a = 10;
+	if (1) {
+		int a = 11;
+		printf("%d\n", a);
+	}
+	printf("%d\n", a);
+	return 0;
+}
+
+//数组名是常量
+int addSum(char *buf)
+{
+	char* p= strtok(buf, ",");
+	int i = 0;
+	int sum = 0;
+	while (p != NULL)
+	{
+		printf("%s\n", p);
+		int n = atoi(p);
+		sum += n;
+		p = strtok(NULL, ",");
+	}
+	printf("%d\n", sum);
+	
+	return 0;
+}
+
+int main10()
+{
+	char buf[] = { "23,13,5,10" };
+	addSum(buf);
+	return 0;
+}
 
 //收尾同时遍历  双端  查找除去空白都多少个字符
-int main()
+int main09()
 {
 	char *p = "     abcdevf      ";
 	char* start = p;
